@@ -25,14 +25,14 @@ void create (int a[], int n){
 
 void display(struct node *p){
     while(p != NULL){
-        printf("%d", p-> data);
+        printf("%d\n", p-> data);
         p = p ->next;
     }
 }
 void Rdisplay(struct node *p){
     if(p!= NULL){
         Rdisplay(p->next);
-        printf("%d", p->data);
+        printf("%d\n", p->data);
     }
 }
 int main(){
