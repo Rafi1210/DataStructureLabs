@@ -50,8 +50,8 @@ int main(){
     }
 
     create(a, n);
-    printf("Count %d\n", count(head));
-
+    printf("Count is %d\n", count(head));
+    printf("Recursive Count is %d\n", Rcount(head));
     return 0;
 
 }
