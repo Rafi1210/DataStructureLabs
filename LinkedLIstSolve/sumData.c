@@ -31,8 +31,7 @@ void create(int a[], int n){
 //         p= p -> next;
 //     }
 //     return sum;
-    
-// }
+//}
 
 int Rsum(struct node* p){
     if(p == NULL){
