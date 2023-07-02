@@ -31,13 +31,31 @@ int max(struct node *p){
 
          p = p->next;
     }
-    
+
 return max;
 }
 
+int Rmax(struct node *p){
+    int x = 0;
+    if(p== 0){
+        return -214483648;
+    }
+    else{
+    x = Rmax(p -> next);
+    if (x > p->data)
+    {
+        return x;
+    }
+    else{
+        return p->data;
+    }
+}
+    
+}
 int main(){
     int a[] = {3,4,5,2,6,2,1,9,3,1};
     create(a,10);
-    printf("Max is %d", max(head));
+    printf("Max is %d\n\n", max(head));
+    printf("Recursive max is %d\n\n", Rmax(head));
     return 0;
 }
