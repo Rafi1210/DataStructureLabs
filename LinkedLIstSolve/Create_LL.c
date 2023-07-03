@@ -47,5 +47,9 @@ int main(){
     }
 
     create(a, n);
+    printf("Linked List Display : \n");
     display(head);
+    printf("Linked List Display Recursively : \n"); //Reverse order print , reverse Linked List
+    Rdisplay(head);
+    return 0;
 }
