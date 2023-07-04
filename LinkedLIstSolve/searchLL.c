@@ -8,13 +8,13 @@ struct node {
 
 void create(int a[], int n) {
     int i;
-    struct node* t, * last;
+    struct node *t, *last;
     first = (struct node*)malloc(sizeof(struct node));
-    first->data = a[0];
+    first->data = a[0]; 
     first->next = NULL;
-    last = first;
+    last = first;//Initially it is pointing the same node, same node is first and last
 
-    for (i = 1; i < n; i++) {
+    for (i = 1; i < n; i++) {     //here i = 0 is the first node created above 
         t = (struct node*)malloc(sizeof(struct node));
         t->data = a[i];
         t->next = NULL;
