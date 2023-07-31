@@ -1,7 +1,10 @@
 {
   "files.associations": {
     "stdlib.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "array": "c",
+    "initializer_list": "c",
+    "utility": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

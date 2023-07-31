@@ -36,7 +36,6 @@ void Rdisplay(struct node *p){
     }
 }
 int main(){
-    struct node *temp;
     int n;
     printf("Enter size of the Linked list : ");
     scanf("%d", &n);
