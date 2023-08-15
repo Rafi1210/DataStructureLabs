@@ -15,7 +15,7 @@ treenode *createnode(int value){
     }
     return res;
 }
- 
+
 void printtree(treenode *root){
     if(root == NULL){
         printf("----Empty----\n");

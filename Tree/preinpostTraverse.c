@@ -96,6 +96,22 @@ void printInorder(struct node* root){
     return leftCount + rightCount; // Total leaf count of the subtree
 }
 
+int oneleaf(struct node* root){
+  if(root == NULL){
+    return 0;
+  }
+   if (root->left == NULL && root->right == NULL) {
+        return 0;
+    }
+  if(root->left == NULL || root->right == NULL){
+    return 1;
+  }
+    int lefttra = oneleaf(root->left);
+    int righttra = oneleaf(root->right);
+
+    return 1;
+}
+
 
    int internalcount(struct node *root) {
     if (root == NULL) {
@@ -134,6 +150,70 @@ struct node* searchmax(struct node* root) {
         return root; // Found the minimum node
     
     return searchmax(root->right);
+}
+int sumValues(struct node* root) {
+    if (root == NULL) {
+        return 0; // Base case: empty subtree contributes 0 to the sum
+    } else {
+        int leftSum = sumValues(root->left);   // Sum of values in the left subtree
+        int rightSum = sumValues(root->right); // Sum of values in the right subtree
+        return root->data + leftSum + rightSum; // Return total sum of values
+    }
+}
+
+
+struct node* deleteLeaves(struct node* root) {
+    if (root == NULL) {
+        return NULL; // Base case: empty tree
+    }
+    
+    if (root->left == NULL && root->right == NULL) {
+        free(root); // Delete the leaf node
+        return NULL;
+    }
+    
+    root->left = deleteLeaves(root->left);   // Recursively delete leaves in the left subtree
+    root->right = deleteLeaves(root->right); // Recursively delete leaves in the right subtree
+    
+    return root;
+}
+
+
+struct node *inOrderPredecessor(struct node* root){
+    root = root->left;
+    while (root->right!=NULL)
+    {
+        root = root->right;
+    }
+    return root;
+}
+
+struct node *deleteNode(struct node *root, int value) {
+    struct node *del;
+    if (root == NULL) {
+        return NULL;
+    }
+
+    if (value < root->data) {
+        root->left = deleteNode(root->left, value);
+    } else if (value > root->data) {
+        root->right = deleteNode(root->right, value);
+    } else {
+        if (root->left == NULL) {
+            struct node *temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            struct node *temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        del = inOrderPredecessor(root);
+        root->data = del->data;
+        root->left = deleteNode(root->left, del->data);
+    }
+    return root;
 }
 
 
@@ -196,6 +276,25 @@ if (maxNode != NULL) {
 } else {
     printf("The tree is empty.\n");
 }
-   
+
+int sumNodeValue = sumValues(root); 
+printf("Sum of node values: %d\n", sumNodeValue);
+
+
+deleteNode(root, 15);
+//deleteLeaves(root);
+printf("\nLeaves Deleted!!!\n");
+ printf("\nIn-order traversals: ");
+    printInorder(root);
+
+
+  int oneL = oneleaf(root);
+  if(oneL == 1)
+{
+  printf("\nYES");
 }
-   
+else{
+  printf("NO");
+}
+return 0;
+}
