@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<stdbool.h>
 struct node {
     int data;
     struct node* left;
@@ -17,6 +17,7 @@ struct node {
     }
     return res;
 }
+
 void printPreorder(struct node* root){
     if(root == NULL){
     return;
@@ -41,25 +42,102 @@ void printInorder(struct node* root){
     printPostorder(root->right);
     printf("%d ", root->data);
    }
-   void searchTree(struct node * root, int key){
+
+    struct node* insertnumber(struct node **rootptr, int value){
+  struct node *root = *rootptr;
+  if(root == NULL){
+    (*rootptr) = newnode(value);
+    return root;
+  }
+  if(value == root->data){
+    return root;
+  }
+  if(value < root->data){
+    return insertnumber(&(root->left), value);
+  }
+  else{
+    return insertnumber(&(root->right), value);
+  }
+}
+
+   struct node* searchTree(struct node * root, int key){
     if(root==NULL){
-      return;
-    }searchTree(root->left,key);
-      searchTree(root->right,key);
-    if(root->data == key){
-      printf("\nKey Found - %d", root -> data);
+      return root;
+    }
+    else if(root-> data <key ){
+      return searchTree(root->right,key);
+    }
+    else if (root -> data > key ){
+    return searchTree(root->left,key);
+    }
+    else if(root->data == key){
+          return root;
       
     }
     else{
       printf("\nNot found!");
     }
    }
+
+
+   int leafcount(struct node *root) {
+    if (root == NULL) {
+        return 0; // Base case: empty subtree has 0 leaf nodes
+    }
+    
+    if (root->left == NULL && root->right == NULL) {
+      printf("%d ", root->data);
+        return 1; // Base case: leaf node
+    }
+    
+    int leftCount = leafcount(root->left);
+    int rightCount = leafcount(root->right);
+    
+    return leftCount + rightCount; // Total leaf count of the subtree
+}
+
+
+   int internalcount(struct node *root) {
+    if (root == NULL) {
+        return 0; // Base case: empty subtree has 0 internal nodes
+    }
+    
+    // If both left and right are NULL, it's a leaf node
+    if (root->left == NULL && root->right == NULL) {
+        return 0;
+    }
+    
+    // Print the data of internal node
+    printf("%d ", root->data);
+    
+    // Recursive count internal nodes in the left and right subtrees
+    int leftCount = internalcount(root->left);
+    int rightCount = internalcount(root->right);
+    
+    // Return the total count of internal nodes
+    return 1 + leftCount + rightCount;
+}
+
+
    int main(){
-    struct node* root = newnode(1);
-    root->left = newnode(2);
-    root->right = newnode(3);
-    root->left->left = newnode(4);
-    root->left->right =newnode(5);
+    struct node* root = NULL;
+    //....................................||||||||
+    // insertnumber(&root, 15);
+    // insertnumber(&root, 11);
+    // insertnumber(&root, 24);
+    // insertnumber(&root, 5);
+    // insertnumber(&root, 14);
+    // insertnumber(&root, 16);
+    // insertnumber(&root, 19);
+    // compile time declaration ...........||||||||
+    printf("Enter how many nodes you want to create : ");
+    int n,node;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+      scanf("%d", &node);
+     insertnumber(&root, node); 
+    }
 
     printf("DFS traversal of binary tree is -\n");
     printf("\nPre-order traversals: ");
@@ -68,7 +146,24 @@ void printInorder(struct node* root){
     printInorder(root);
     printf("\nPost-order traversals: ");
     printPostorder(root);
-    searchTree(root,5);
+    int key = 19;
+    struct node* result = searchTree(root, key);
+    if (result != NULL) {
+        printf("\nKey %d found in the tree.\n", key);
+    } else {
+        printf("\nKey %d not found in the tree.\n", key);
+    }
+
+
+    printf("\nLeaf nodes : ");
+    int count = leafcount(root);
+    printf("\nNumber of leaf nodes: %d\n", count);
+
+
+      printf("\nNon Leaf nodes : ");
+      int internal = internalcount(root);
+      printf("\nNumber of non-leaf nodes: %d\n", internal);
+
     return 0;
    }
    
