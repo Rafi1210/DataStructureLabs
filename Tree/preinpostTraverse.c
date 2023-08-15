@@ -118,6 +118,24 @@ void printInorder(struct node* root){
     return 1 + leftCount + rightCount;
 }
 
+struct node* searchmin(struct node* root) {
+    if (root == NULL)
+        return NULL; // Tree is empty
+    if (root->left == NULL)
+        return root; // Found the minimum node
+    
+    return searchmin(root->left);
+}
+
+struct node* searchmax(struct node* root) {
+    if (root == NULL)
+        return NULL; // Tree is empty
+    if (root->right == NULL)
+        return root; // Found the minimum node
+    
+    return searchmax(root->right);
+}
+
 
    int main(){
     struct node* root = NULL;
@@ -164,6 +182,20 @@ void printInorder(struct node* root){
       int internal = internalcount(root);
       printf("\nNumber of non-leaf nodes: %d\n", internal);
 
-    return 0;
-   }
+
+struct node* minNode = searchmin(root); 
+if (minNode != NULL) {
+    printf("Minimum value: %d\n", minNode->data);
+} else {
+    printf("The tree is empty.\n");
+}
+
+struct node* maxNode = searchmax(root); 
+if (maxNode != NULL) {
+    printf("Minimum value: %d\n", maxNode->data);
+} else {
+    printf("The tree is empty.\n");
+}
+   
+}
    
