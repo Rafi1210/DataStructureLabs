@@ -147,7 +147,7 @@ struct node* searchmax(struct node* root) {
     if (root == NULL)
         return NULL; // Tree is empty
     if (root->right == NULL)
-        return root; // Found the minimum node
+        return root; // Found the maximum node
     
     return searchmax(root->right);
 }
@@ -282,7 +282,7 @@ printf("Sum of node values: %d\n", sumNodeValue);
 
 
 deleteNode(root, 15);
-//deleteLeaves(root);
+deleteLeaves(root);
 printf("\nLeaves Deleted!!!\n");
  printf("\nIn-order traversals: ");
     printInorder(root);

@@ -4,7 +4,8 @@
     "stdio.h": "c",
     "array": "c",
     "initializer_list": "c",
-    "utility": "c"
+    "utility": "c",
+    "algorithm": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

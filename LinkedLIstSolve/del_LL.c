@@ -31,6 +31,14 @@ void Display(struct Node *p)
  p=p->next;
  }
 }
+int count(struct Node *p){
+    int c = 0;
+    while(p){  //while(p) means while(p!= NULL)
+    c++;
+    p = p -> next;
+    }
+    return c;
+}
 void RDisplay(struct Node *p)
 {
  if(p!=NULL)
@@ -68,8 +76,6 @@ int Delete(struct Node *p,int index)
  return x;
  
  }
- 
- 
 }
 int main()
 {
@@ -77,7 +83,7 @@ int main()
  int A[]={10,20,30,40,50};
  create(A,5);
  
- printf(“%d\n",Delete(first),2);
+ printf("%d\n",Delete(first,2));
  Display(first);
  
  return 0;

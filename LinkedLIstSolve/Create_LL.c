@@ -23,6 +23,7 @@ void create (int a[], int n){
     
 }
 
+
 void display(struct node *p){
     while(p != NULL){
         printf("%d\n", p-> data);
